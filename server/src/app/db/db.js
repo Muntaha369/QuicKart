@@ -6,7 +6,7 @@ try {
        console.log('Connected!');
 } catch (error) {
   console.error('Connection failed')
-  process.exit(0);
+  process.exit(1);
 }
 }
 

@@ -1,12 +1,14 @@
 import nodemailer from 'nodemailer';
 import { NextResponse } from 'next/server';
-import { useStore } from 'zustand';
 import { generatePassword } from '../../store/generatepass';
 import User from '../../model/model';
+import ConnectDB from '../../db/db';
+import { setOtp } from '../../store/store';
 
-const { setOtp } = useStore();
 
 export async function POST(req) {
+
+  await ConnectDB();
 
   const body = await req.json();
   const { name, email, pass } = body;
@@ -17,7 +19,7 @@ export async function POST(req) {
   }
 
   const otp = generatePassword(4, false);
-  setOtp( otp, name, Date.now() );
+  setOtp( email, otp, name, Date.now() );
 
   let transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -34,15 +36,13 @@ export async function POST(req) {
     text: `Your OTP is: ${otp}`
   };
 
-  transporter.sendMail(mailOptions, function(error, info){
-    if (error) {
-      console.log(error);
-      return NextResponse.json({ msg: 'Failed to send OTP' },{ status: 500 });
-    } else {
-      console.log('Email sent: ' + info.response);
-      return NextResponse.json({ email, pass });
-    }
-  });
+  try {
+    const info = await transporter.sendMail(mailOptions);
+    console.log('Email sent:', info.response);
+
+    return NextResponse.json({ msg: 'OTP sent successfully', email, pass });
+  } catch (error) {
+    console.error('Email send failed:', error);
+    return NextResponse.json({ msg: 'Failed to send OTP' }, { status: 500 });
+  };
 }
-
-
