@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import User from "../../model/model";
+import bcrypt from "bcrypt";
 
 export async function POST(req) {
   const body = await req.json();
@@ -11,7 +12,7 @@ export async function POST(req) {
     return NextResponse.json({ msg: "User does not exist" }, { status: 401 });
   }
 
-  const isPasswordValid = pass; 
+  const isPasswordValid = await bcrypt.compare(pass, userExist.pass); 
 
   if (!isPasswordValid) {
     return NextResponse.json({ msg: "Invalid credentials" }, { status: 401 });

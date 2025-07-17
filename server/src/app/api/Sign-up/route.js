@@ -22,7 +22,6 @@ export async function POST(req) {
 
   const otp = generatePassword(4, false);
 
-  // Clean any previous OTPs
   await Otp.deleteOne({ email });
   await Otp.create({ email, name, otp });
 
