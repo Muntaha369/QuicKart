@@ -16,9 +16,21 @@
 .Log-google{
   @apply w-[93%] sm:w-[80%] bg-white text-xl text-black px-3 py-3.5 font-normal rounded-2xl hover:bg-white transition-all duration-300 border border-[#5E2615] hover:border-[#FF6C41] focus:border-[#FF6C41] outline-none placeholder:text-[#5E2615] placeholder:font-normal flex justify-center items-center hover:cursor-pointer
 }
+.Sign-button{
+  @apply w-[60%] sm:w-[60%] bg-[#FF6C41] text-2xl text-white px-3 py-2 font-bold rounded-2xl hover:bg-white hover:text-[#FF6C41] transition-all duration-300 border border-[#5E2615] hover:border-[#FF6C41] focus:border-[#FF6C41] outline-none  placeholder:text-[#5E2615] placeholder:font-normal  hover:cursor-pointer
+}
+
+
+.Sign-google{
+  @apply w-[35%] sm:w-[35%] bg-white text-xl text-black px-3 py-2 font-normal rounded-2xl hover:bg-white transition-all duration-300 border border-[#5E2615] hover:border-[#FF6C41] focus:border-[#FF6C41] outline-none placeholder:text-[#5E2615] placeholder:font-normal flex justify-center items-center hover:cursor-pointer
+}
 
 .didntsignforget{
   @apply w-full flex justify-between md:px-13 sm:px-25 px-10 text-nowrap lg:px-25 text-[#5E2615] text-xs sm:text-sm mb-3
+}
+
+.didntsignforget{
+  @apply w-full flex justify-center items-center md:px-13 sm:px-25 px-10 text-nowrap lg:px-25 text-[#5E2615] text-xs sm:text-sm mb-3
 }
 
 .didntsignforget p{

@@ -12,22 +12,24 @@ const page = () => {
 
       <div className=' h-full sm:h-[35em] w-full md:w-[60em] lg:w-[40em] pb-4 shadow-[1px_1px_6px_3px_rgba(0,_0,_0,_0.1)] sm:m-5 rounded-2xl flex-custom '>
 
-        <h1 className={`${inter.className} text-5xl text-white font-bold pt-15 pb-5`}>Quic<span className='text-black'>kart</span></h1>
+        <h1 className={`${inter.className} text-5xl text-white font-bold pt-8 pb-5`}>Quic<span className='text-black'>kart</span></h1>
 
-        <input placeholder='Your Email' className='login-input' type="email" />
+        <input placeholder='Username' className='login-input' type="email" />
+        <input placeholder='Email' className='login-input' type="text" />
         <input placeholder='Password' className='login-input' type="text" />
-        <button className='Log-button'>Log in</button>
+        <input placeholder='Confirm Password' className='login-input' type="text" />
+        <div className='flex w-[93%] sm:w-[80%] justify-between'>
+          <button className='Sign-button '>Sign in</button>
 
-        <button className='Log-google'>
-          <span className="inline-block">
-            <img src={Google.src} className="align-middle h-8" />
-          </span>
-            <span className='pl-4'>Continue with Google</span>
-        </button>
+          <button className='Sign-google '>
+            <span className="inline-block">
+              <img src={Google.src} className="align-middle h-10" />
+            </span>
+          </button>
+        </div>
 
         <div className='didntsignforget'>
           <p>Didn't Sign up Yet?</p> 
-          <p>Forget your password?</p>
         </div>
 
       </div>
