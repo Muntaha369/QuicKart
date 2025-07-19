@@ -6,19 +6,19 @@
 }
 
 .login-input{
-  @apply w-[80%] bg-white px-3 py-4 font-bold rounded-2xl border border-[#5E2615] hover:border-[#FF6C41] focus:border-[#FF6C41] outline-none text-xl placeholder:text-[#5E2615] placeholder:font-normal 
+  @apply w-[93%] sm:w-[80%] bg-white px-3 py-4 font-bold rounded-2xl border border-[#5E2615] hover:border-[#FF6C41] focus:border-[#FF6C41] outline-none text-xl placeholder:text-[#5E2615] placeholder:font-normal 
 }
 
 .Log-button{
-  @apply w-[80%] bg-[#FF6C41] text-2xl text-white px-3 py-3 font-bold rounded-2xl hover:bg-white hover:text-[#FF6C41] transition-all duration-300 border border-[#5E2615] hover:border-[#FF6C41] focus:border-[#FF6C41] outline-none  placeholder:text-[#5E2615] placeholder:font-normal  hover:cursor-pointer
+  @apply w-[93%] sm:w-[80%] bg-[#FF6C41] text-2xl text-white px-3 py-3 font-bold rounded-2xl hover:bg-white hover:text-[#FF6C41] transition-all duration-300 border border-[#5E2615] hover:border-[#FF6C41] focus:border-[#FF6C41] outline-none  placeholder:text-[#5E2615] placeholder:font-normal  hover:cursor-pointer
 }
 
 .Log-google{
-  @apply w-[80%] bg-white text-xl text-black px-3 py-3.5 font-normal rounded-2xl hover:bg-white transition-all duration-300 border border-[#5E2615] hover:border-[#FF6C41] focus:border-[#FF6C41] outline-none placeholder:text-[#5E2615] placeholder:font-normal flex justify-center items-center hover:cursor-pointer
+  @apply w-[93%] sm:w-[80%] bg-white text-xl text-black px-3 py-3.5 font-normal rounded-2xl hover:bg-white transition-all duration-300 border border-[#5E2615] hover:border-[#FF6C41] focus:border-[#FF6C41] outline-none placeholder:text-[#5E2615] placeholder:font-normal flex justify-center items-center hover:cursor-pointer
 }
 
 .didntsignforget{
-  @apply w-full flex justify-between md:px-13 text-nowrap lg:px-25 text-[#5E2615] text-sm mb-3
+  @apply w-full flex justify-between md:px-13 sm:px-25 px-10 text-nowrap lg:px-25 text-[#5E2615] text-xs sm:text-sm mb-3
 }
 
 .didntsignforget p{

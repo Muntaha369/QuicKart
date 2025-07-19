@@ -9,7 +9,7 @@ const inter = Inter({subsets:['latin']})
 const page = () => {
   return (
     <div className=' overflow-x-clip relative h-screen w-screen bg-gradient-to-b from-[#FFD07E]/60 to-[#FF9A41]/60 flex justify-between items-center overflow-y-hidden'>
-      <div className='h-[35em] md:w-[60em] lg:w-[40em] pb-4 shadow-[1px_1px_6px_3px_rgba(0,_0,_0,_0.1)] m-5 rounded-2xl flex-custom '>
+      <div className=' h-full sm:h-[35em] w-full md:w-[60em] lg:w-[40em] pb-4 shadow-[1px_1px_6px_3px_rgba(0,_0,_0,_0.1)] sm:m-5 rounded-2xl flex-custom '>
         <h1 className={`${inter.className} text-5xl text-white font-bold pt-15 pb-5`}>Quic<span className='text-black'>kart</span></h1>
         <input placeholder='Your Email' className='login-input' type="email" />
         <input placeholder='Password' className='login-input' type="text" />
