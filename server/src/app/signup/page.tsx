@@ -2,6 +2,7 @@ import React from 'react'
 import Google from '../../../public/google-icon.png'
 import AuthBag from '../../../public/AuthBag.png'
 import mdAuthBag from '../../../public/Right-and-left bag.png'
+import axios from 'axios'
 import { Inter } from 'next/font/google'
 
 const inter = Inter({subsets:['latin']})
@@ -54,7 +55,6 @@ const page = () => {
         <img className='absolute top-60 h-[25em] z-0' src={mdAuthBag.src} alt="Auth-Bag" />
 
       </div>
-
     </div>
   )
 }
