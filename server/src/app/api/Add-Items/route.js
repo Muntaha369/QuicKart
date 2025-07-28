@@ -45,7 +45,7 @@ export async function POST(req) {
 
     // --- Use the data ---
     console.log(`File uploaded: ${filename}`);
-    console.log(newProduct);
+    // console.log(newProduct);
     // Here you would save 'filename' and 'imgtype' to your database
 
     return NextResponse.json({
