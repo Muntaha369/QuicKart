@@ -1,13 +1,51 @@
-import React from 'react'
+"use client"
+
+import React,{useState, useEffect} from 'react'
 import Google from '../../../public/google-icon.png'
 import AuthBag from '../../../public/AuthBag.png'
 import mdAuthBag from '../../../public/Right-and-left bag.png'
 import axios from 'axios'
 import { Inter } from 'next/font/google'
+import {userDetails} from '@/app/store/zuststore'
 
 const inter = Inter({subsets:['latin']})
 
 const page = () => {
+
+  const { ChangeDetails } = userDetails()
+
+  const [data, setData] = useState({
+    name:"",
+    email:"",
+    pass:""
+  })
+
+
+  const [confirmpass, setConfirmpass] = useState<String>("")
+
+  const checkPass = async()=>{
+    if(data.pass === confirmpass){
+
+      try {
+            const signup = await axios.post('http://localhost:3000/api/Sign-up',{
+              name:data.name,
+              email:data.email,
+              pass:data.pass
+            })
+      
+            console.log(signup)
+            await ChangeDetails(data.name, data.email, data.pass)
+
+
+      } catch (error) {
+        console.error(error)
+      }
+    }
+    else{
+      console.log("Not Confirmed")
+    }
+  }
+
   return (
     <div className=' overflow-x-clip relative h-screen w-screen bg-gradient-to-b from-[#FFD07E]/60 to-[#FF9A41]/60 flex justify-between items-center overflow-y-hidden'>
 
@@ -15,12 +53,21 @@ const page = () => {
 
         <h1 className={`${inter.className} text-5xl text-white font-bold pt-8 pb-5`}>Quic<span className='text-black'>kart</span></h1>
 
-        <input placeholder='Username' className='login-input' type="email" />
-        <input placeholder='Email' className='login-input' type="text" />
-        <input placeholder='Password' className='login-input' type="text" />
-        <input placeholder='Confirm Password' className='login-input' type="text" />
+        <input placeholder='Username'
+          onChange={(e)=>setData((prev)=>({...prev,name:e.target.value}))} className='login-input' type="email" />
+        <input placeholder='Email'
+          onChange={(e)=>setData((prev)=>({...prev,email:e.target.value}))} className='login-input' type="text" />
+        <input placeholder='Password'
+          onChange={(e)=>setData((prev)=>({...prev,pass:e.target.value}))} className='login-input'
+          type="text" />
+        <input placeholder='Confirm Password' className='login-input'
+          onChange={(e)=>setConfirmpass(e.target.value)}
+          type="text" />
+
         <div className='flex w-[93%] sm:w-[80%] justify-between'>
-          <button className='Sign-button '>Sign in</button>
+          <button
+          onClick={checkPass}
+          className='Sign-button'>Sign in</button>
 
           <button className='Sign-google '>
             <span className="inline-block">
