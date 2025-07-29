@@ -19,9 +19,9 @@ export async function POST(req) {
     return NextResponse.json({ msg: 'Invalid OTP' }, { status: 400 });
   }
 
-  const saltRounds = 10;
-  const hashedPassword = await bcrypt.hash(pass, saltRounds);
-  const userCreated = await User.create({ name: record.name, email, pass: hashedPassword });
+  // const saltRounds = 10;
+  // const hashedPassword = await bcrypt.hash(pass, saltRounds);
+  const userCreated = await User.create({ name: record.name, email, pass: pass });
 
   await Otp.deleteOne({ email }); 
 

@@ -7,10 +7,13 @@ import mdAuthBag from '../../../public/Right-and-left bag.png'
 import axios from 'axios'
 import { Inter } from 'next/font/google'
 import {userDetails} from '@/app/store/zuststore'
+import { useRouter } from 'next/navigation'
 
 const inter = Inter({subsets:['latin']})
 
 const page = () => {
+
+  const router = useRouter()
 
   const { ChangeDetails } = userDetails()
 
@@ -36,6 +39,8 @@ const page = () => {
             console.log(signup)
             await ChangeDetails(data.name, data.email, data.pass)
 
+            router.push('/verify')
+            
 
       } catch (error) {
         console.error(error)
