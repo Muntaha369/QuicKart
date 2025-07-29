@@ -9,36 +9,35 @@ import Google from '../../../public/google-icon.png';
 import AuthBag from '../../../public/AuthBag.png';
 import mdAuthBag from '../../../public/Right-and-left bag.png';
 import { Inter } from 'next/font/google';
+import { useRouter } from 'next/navigation';
 
 const inter = Inter({ subsets: ['latin'] });
 
 const Page = () => {
-  // 1. State to store email and password from the input fields
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  // 2. Function to handle the login logic
+  const router = useRouter();
+
   const handleLogin = async () => {
-    // Basic validation
     if (!email || !password) {
       alert('Please enter both email and password.');
       return;
     }
 
     try {
-      // 3. Make the POST request using Axios
+
       const response = await axios.post('http://localhost:3000/api/Login', {
         email: email,
         pass: password,
       });
 
-      // Handle a successful response
       console.log('Login successful:', response.data);
-      alert('Login successful!');
-      // You can redirect the user or save a token here
+      // alert('Login successful!');
+      router.push('/')
+
       
     } catch (error) {
-      // Handle errors (e.g., wrong credentials, server error)
       console.error('Login failed:', error);
       alert('Login failed. Please check your credentials.');
     }
