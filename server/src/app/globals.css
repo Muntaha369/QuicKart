@@ -60,7 +60,7 @@
 }
 
 .sunshine {
-  @apply bg-gradient-to-b from-gray-600 to-black transition-all duration-500;      /* Tailwind amber-400 */
+  @apply bg-gray-800 transition-all duration-500;      /* Tailwind amber-400 */
 }
 
 .sunshine .catagoryContainer{
@@ -98,6 +98,12 @@
 .catagoryContainer{
   @apply hidden lg:hidden  space-x-11 mt-5
 }
+
+/* Landing styling */
+
+
+
+/* HomePage styling */
 
 /* :root {
   --background: #ffffff;

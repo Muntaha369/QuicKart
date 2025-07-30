@@ -43,7 +43,7 @@ const Nav = () => {
           targets: navRef.current, // The element to toggle the class on
           className: 'sunshine',   // The class to add/remove
         },
-        markers: true, // Keep for debugging, remove for production
+        // markers: true, // Keep for debugging, remove for production
       });
     }
   }, []); // Empty dependency array ensures this runs once after mount
@@ -90,7 +90,7 @@ const Nav = () => {
 
       {/* --- DESKTOP CATEGORY LINKS --- */}
       {/* 3. Attach the ref to the parent container */}
-      <div ref={categoryContainerRef} className='catagoryContainer'>
+      <div ref={categoryContainerRef} className='catagoryContainer overflow-x-scroll'>
         {itemsArr.map((elem, idx) => (
           <div key={idx} className='flex items-center space-x-2 cursor-pointer'>
             <img className='h-[1rem] w-[1rem]' src={elem.images} alt={elem.items} />
