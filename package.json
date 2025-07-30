@@ -1,7 +1,0 @@
-{
-  "dependencies": {
-    "motion": "^12.23.12",
-    "multer": "^2.0.2",
-    "zustand": "^5.0.6"
-  }
-}
