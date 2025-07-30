@@ -49,6 +49,8 @@
    @apply hover:cursor-pointer hover:bg-[#FF6C41]/90 h-[2.3em] w-[70%] text-white text-3xl font-bold bg-[#FF6C41] rounded-lg
 }
 
+/* From here Nav components */
+
 /* :root {
   --background: #ffffff;
   --foreground: #171717;
