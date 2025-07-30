@@ -1,6 +1,9 @@
-'use client'; // Add this to use state and handle clicks
+'use client';
 
-import React, { useState } from 'react'; // Import useState
+import React, { useState, useRef } from 'react';
+import { gsap } from "gsap";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Inter } from 'next/font/google';
 import SearchIcon from '../../../public/Vector.png';
 import LoginIcon from '../../../public/LoginIcon.png';
@@ -9,6 +12,7 @@ import Fashion from '../../../public/Fashion.png';
 import Essentials from '../../../public/Essentials.png';
 import Beauty from '../../../public/Beauty.png';
 import Health from '../../../public/Health.png';
+import Cart from '../../../public/Kart.png';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -21,47 +25,60 @@ const itemsArr = [
 ];
 
 const Nav = () => {
-  // State to manage the mobile menu's open/closed status
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  // 1. Create refs for the elements we want to animate
+  const navRef = useRef(null);
+  const categoryContainerRef = useRef(null); // Ref for the parent container
+
+  useGSAP(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    if (categoryContainerRef.current) {
+      ScrollTrigger.create({
+        trigger: categoryContainerRef.current,
+        start: 'top 10%', // When the top of the container hits 10% from the top of the viewport
+        end: '1000% 10%', // When the bottom of the container hits 10% from the top of the viewport
+        toggleClass: {
+          targets: navRef.current, // The element to toggle the class on
+          className: 'sunshine',   // The class to add/remove
+        },
+        // markers: true, // Keep for debugging, remove for production
+      });
+    }
+  }, []); // Empty dependency array ensures this runs once after mount
+
   return (
-    <nav className='w-full border-b-2 backdrop-blur-md flex flex-col fixed top-0 z-50 p-2 sm:p-4 lg:px-12'>
+    <nav ref={navRef} className='navbar nav1'>
       {/* --- TOP BAR --- */}
-      <div className='flex justify-between items-center w-full'>
-        {/* Logo */}
+      <div className='navflex'>
         <h1 className={`${inter.className} hidden sm:flex sm:text-3xl lg:text-5xl font-bold text-gray-800`}>
           Quic<span className='text-[#FF6C41]'>kart</span>
         </h1>
-
-        {/* Search Bar - Hidden on mobile, visible on medium screens and up */}
-        <div className='flex bg-white h-[3rem] rounded-lg overflow-clip '>
-          <div className='w-[4rem] h-[3rem] border-r-2 border-r-amber-400 pr-3 pl-4 p-3.5 flex justify-center items-center'>
+        <div className='searchBarHolder'>
+          <div className='searchButton'>
             <img src={SearchIcon.src} alt="Search" />
           </div>
           <input
             placeholder='Search Products...'
-            className='px-3 text-lg flex placeholder:text-[#FF6C41] outline-none w-[60vw] md:w-[50vw] lg:w-[40vw] h-[3rem]'
+            className='searchBar'
             type="text"
           />
         </div>
-
-        {/* Desktop Icons - Hidden on small screens, visible on large screens */}
         <div className='hidden lg:flex space-x-6 items-center'>
           <div>
-            <div className='bg-white h-[2.2rem] w-[2.2rem] rounded-full flex justify-center items-center p-2.5'>
+            <div className='bg-white h-[2.2rem] w-[2.2rem] rounded-full flex justify-center items-center p-2.5 border-1 border-[#FF6C41]'>
               <img src={LoginIcon.src} alt="Login" />
             </div>
             <p className='text-[#FF6C41] text-sm text-center'>Login</p>
           </div>
           <div>
-            <div className='bg-white h-[2.2rem] w-[2.2rem] rounded-full flex justify-center items-center p-2.5'>
-              <img src={LoginIcon.src} alt="Cart" />
+            <div className='bg-white h-[2.2rem] w-[2.2rem] rounded-full flex justify-center items-center p-2.5 border-1 border-[#FF6C41]'>
+              <img src={Cart.src} alt="Cart" />
             </div>
             <p className='text-[#FF6C41] text-sm text-center'>Cart</p>
           </div>
         </div>
-
-        {/* Hamburger Menu Icon - Visible only on small screens */}
         <div className='lg:hidden'>
           <button onClick={() => setIsMenuOpen(!isMenuOpen)}>
             <svg className="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -72,8 +89,8 @@ const Nav = () => {
       </div>
 
       {/* --- DESKTOP CATEGORY LINKS --- */}
-      {/* Hidden on small screens, visible on large screens */}
-      <div className='hidden lg:flex  space-x-11 mt-5'>
+      {/* 3. Attach the ref to the parent container */}
+      <div ref={categoryContainerRef} className='catagoryContainer'>
         {itemsArr.map((elem, idx) => (
           <div key={idx} className='flex items-center space-x-2 cursor-pointer'>
             <img className='h-[1rem] w-[1rem]' src={elem.images} alt={elem.items} />
@@ -83,7 +100,6 @@ const Nav = () => {
       </div>
 
       {/* --- MOBILE MENU --- */}
-      {/* This block is shown or hidden based on the isMenuOpen state */}
       <div className={`lg:hidden mt-4 ${isMenuOpen ? 'flex' : 'hidden'} flex-col space-y-4`}>
         {itemsArr.map((elem, idx) => (
           <div key={idx} className='flex items-center space-x-2 cursor-pointer p-2 rounded hover:bg-gray-200'>
@@ -91,10 +107,9 @@ const Nav = () => {
             <p className={`${inter.className} text-gray-800 text-base`}>{elem.items}</p>
           </div>
         ))}
-        {/* Add mobile login/cart links here */}
         <div className='border-t pt-4 space-y-4'>
-            <div className='flex items-center space-x-2 cursor-pointer'><p>Login</p></div>
-            <div className='flex items-center space-x-2 cursor-pointer'><p>Cart</p></div>
+          <div className='flex items-center space-x-2 cursor-pointer'><p>Login</p></div>
+          <div className='flex items-center space-x-2 cursor-pointer'><p>Cart</p></div>
         </div>
       </div>
     </nav>
