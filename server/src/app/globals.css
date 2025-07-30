@@ -60,7 +60,7 @@
 }
 
 .sunshine {
-  @apply bg-black transition-all duration-500;      /* Tailwind amber-400 */
+  @apply bg-gradient-to-b from-gray-600 to-black transition-all duration-500;      /* Tailwind amber-400 */
 }
 
 .sunshine .catagoryContainer{
