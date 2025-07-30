@@ -37,13 +37,13 @@ const Nav = () => {
     if (categoryContainerRef.current) {
       ScrollTrigger.create({
         trigger: categoryContainerRef.current,
-        start: 'top 10%', // When the top of the container hits 10% from the top of the viewport
+        start: '200% 10%', // When the top of the container hits 10% from the top of the viewport
         end: '1000% 10%', // When the bottom of the container hits 10% from the top of the viewport
         toggleClass: {
           targets: navRef.current, // The element to toggle the class on
           className: 'sunshine',   // The class to add/remove
         },
-        // markers: true, // Keep for debugging, remove for production
+        markers: true, // Keep for debugging, remove for production
       });
     }
   }, []); // Empty dependency array ensures this runs once after mount
@@ -52,7 +52,7 @@ const Nav = () => {
     <nav ref={navRef} className='navbar nav1'>
       {/* --- TOP BAR --- */}
       <div className='navflex'>
-        <h1 className={`${inter.className} hidden sm:flex sm:text-3xl lg:text-5xl font-bold text-gray-800`}>
+        <h1 className={`${inter.className} quickText`}>
           Quic<span className='text-[#FF6C41]'>kart</span>
         </h1>
         <div className='searchBarHolder'>

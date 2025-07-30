@@ -55,12 +55,28 @@
   @apply w-full backdrop-blur-md transition-all duration-500 flex flex-col fixed top-0 z-50 p-2 sm:p-4 lg:px-14
 }
 
+.quickText{
+  @apply hidden sm:flex sm:text-3xl lg:text-5xl font-bold text-black
+}
+
 .sunshine {
-  @apply bg-white transition-all duration-500;      /* Tailwind amber-400 */
+  @apply bg-black transition-all duration-500;      /* Tailwind amber-400 */
 }
 
 .sunshine .catagoryContainer{
-  @apply flex transition-all duration-100
+  @apply flex transition-all duration-500
+}
+
+.sunshine .quickText{
+  @apply text-white
+}
+
+.sunshine .searchBarHolder{
+  @apply border-gray-700
+}
+
+.sunshine .searchButton{
+  @apply border-r-gray-700
 }
 
 .navflex{
