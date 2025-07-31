@@ -92,7 +92,7 @@
 }
 
 .searchBar{
-  @apply px-3 text-lg flex placeholder:text-[#FF6C41] outline-none w-[60vw] md:w-[50vw] lg:w-[40vw] h-[3rem]
+  @apply px-3 text-lg flex placeholder:text-[#FF6C41] outline-none sm:w-[50vw] md:w-[50vw] lg:w-[40vw] h-[3rem]
 }
 
 .catagoryContainer{

@@ -65,7 +65,7 @@ const Nav = () => {
             type="text"
           />
         </div>
-        <div className='hidden lg:flex space-x-6 items-center'>
+        <div className=' scale-75 sm:scale-100 flex space-x-2 lg:space-x-6 items-center'>
           <div>
             <div className='bg-white h-[2.2rem] w-[2.2rem] rounded-full flex justify-center items-center p-2.5 border-1 border-[#FF6C41]'>
               <img src={LoginIcon.src} alt="Login" />
@@ -79,13 +79,6 @@ const Nav = () => {
             <p className='text-[#FF6C41] text-sm text-center'>Cart</p>
           </div>
         </div>
-        <div className='lg:hidden'>
-          <button onClick={() => setIsMenuOpen(!isMenuOpen)}>
-            <svg className="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-            </svg>
-          </button>
-        </div>
       </div>
 
       {/* --- DESKTOP CATEGORY LINKS --- */}
@@ -97,20 +90,6 @@ const Nav = () => {
             <p className={`${inter.className} text-[#FF6C41] text-sm`}>{elem.items}</p>
           </div>
         ))}
-      </div>
-
-      {/* --- MOBILE MENU --- */}
-      <div className={`lg:hidden mt-4 ${isMenuOpen ? 'flex' : 'hidden'} flex-col space-y-4`}>
-        {itemsArr.map((elem, idx) => (
-          <div key={idx} className='flex items-center space-x-2 cursor-pointer p-2 rounded hover:bg-gray-200'>
-            <img className='h-[1rem] w-[1rem]' src={elem.images} alt={elem.items} />
-            <p className={`${inter.className} text-gray-800 text-base`}>{elem.items}</p>
-          </div>
-        ))}
-        <div className='border-t pt-4 space-y-4'>
-          <div className='flex items-center space-x-2 cursor-pointer'><p>Login</p></div>
-          <div className='flex items-center space-x-2 cursor-pointer'><p>Cart</p></div>
-        </div>
       </div>
     </nav>
   );
