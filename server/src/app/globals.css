@@ -146,6 +146,70 @@
 }
 /* Home Electronics */
 
+.SkeletonDiv{
+  @apply w-full aspect-[4/5] hover:cursor-pointer active:scale-100 bg-[#FFEB9E] rounded-lg  overflow-hidden border-2 hover:scale-105 transition-all
+}
+
+.HeroDiv{
+  @apply w-full flex  items-center h-[20rem] py-3.5 px-6 md:px-12 bg-black rounded-2xl mb-12 shadow-lg overflow-hidden
+}
+
+.SuperSonic{
+  @apply text-5xl sm:text-6xl font-bold mt-0 bg-gradient-to-r from-[#806d01] to-[#FFD700] text-transparent w-[21rem] bg-clip-text
+}
+
+.Deals{
+  @apply  inline pt-2 bg-gradient-to-r text-4xl w-28 from-[#665700] to-[#FFD700] bg-clip-text text-transparent
+}
+
+.HeroSub1{
+  @apply text-transparent mt-6 font-semibold text-2xl bg-gradient-to-r from-[#606060] to-white w-68 bg-clip-text
+ }
+
+ .HeroSub2{
+  @apply text-transparent font-semibold text-2xl bg-gradient-to-r from-[#606060] to-white w-68 bg-clip-text
+ }
+
+ .HeroButtonHolder{
+  @apply rounded-lg mt-7 hover:scale-105 transition-all duration-300 active:scale-100 w-42 p-[2px] bg-gradient-to-r from-[#806d01] mb-4 to-[#FFD700]
+ }
+
+ .HeroButtonHolder button{
+  @apply w-full font-bold px-6 py-2 bg-black rounded-md hover:cursor-pointer 
+ }
+
+ .HeroButtonHolder span{
+  @apply bg-gradient-to-r from-[#665700] to-[#FFD700] bg-clip-text text-transparent
+ }
+
+ .ElecMain {
+  @apply w-full flex flex-col items-center overflow-clip mt-20 px-4 sm:px-6 lg:px-8
+ }
+
+ .ElecMap {
+  @apply grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-8
+ }
+
+ .Elecbutton {
+  @apply flex justify-center  items-center w-full aspect-[4/5]
+ }
+ /* Items */
+
+ .ItemsDiv {
+  @apply flex justify-center overflow-x-scroll items-center gap-9 py-5  px-20 mt-20
+ }
+
+ .MappingDiv {
+  @apply transition-all duration-300 hover:cursor-pointer hover:scale-105 w-[10rem] h-[10rem] border-2 lg:shrink-1 shrink-0 lg:h-auto lg:w-full overflow-clip lg:aspect-square rounded-lg bg-[#FF9070] border-[#5E2615]
+ }
+
+ .ItemImg {
+  @apply w-full flex justify-center items-center h-[75%] border-[#5E2615] border-b-2
+ }
+
+ .ItemP {
+  @apply w-full h-[25%] flex justify-center font-semibold text-2xl text-[#5E2615] items-center bg-[#FFE9BE]
+ }
 
 /* :root {
   --background: #ffffff;

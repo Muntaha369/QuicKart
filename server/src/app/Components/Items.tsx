@@ -33,16 +33,16 @@ const ItemsArr = [
 
 const Items = () => {
   return (
-    <div className=' flex justify-center overflow-x-scroll items-center gap-9 py-5  px-20 mt-20'>
+    <div className='ItemsDiv'>
       {
         ItemsArr.map((Item,idx)=>(
           <div
           key={idx}
-          className='transition-all duration-300 hover:cursor-pointer hover:scale-105 w-[10rem] h-[10rem] border-2 lg:shrink-1 shrink-0 lg:h-auto lg:w-full overflow-clip lg:aspect-square rounded-lg bg-[#FF9070] border-[#5E2615]'>
-            <div className='w-full flex justify-center items-center h-[75%] border-[#5E2615] border-b-2'>
+          className='MappingDiv'>
+            <div className='ItemImg'>
               <img className='w-[90%] h-[100%]' src={Item.i} alt="" />
             </div>
-            <div className={`${inter.className} w-full h-[25%] flex justify-center font-semibold text-2xl text-[#5E2615] items-center bg-[#FFE9BE]`}>{Item.p}</div>
+            <div className={`${inter.className} ItemP`}>{Item.p}</div>
           </div>
         ))
       }
