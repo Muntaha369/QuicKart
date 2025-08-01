@@ -30,8 +30,8 @@ const HeroBanner = () => {
       <div className='flex flex-col w-[50%] z-10'>
         <h1 className=' text-5xl sm:text-6xl font-bold mt-0 bg-gradient-to-r from-[#806d01] to-[#FFD700] text-transparent w-[21rem] bg-clip-text'>Super Sonic</h1>
         <h1 className={` ${JuliusSansOne.className} inline pt-2 bg-gradient-to-r text-4xl w-28 from-[#665700] to-[#FFD700] bg-clip-text text-transparent`}>DEALS</h1>
-        <p className='text-transparent mt-6 font-bold text-2xl bg-gradient-to-r from-[#606060] to-white w-68 bg-clip-text'>Buy Electronics Gadgets</p>
-        <p className='text-transparent font-bold text-2xl bg-gradient-to-r from-[#606060] to-white w-68 bg-clip-text'>under 30 000</p>
+        <p className='text-transparent mt-6 font-semibold text-2xl bg-gradient-to-r from-[#606060] to-white w-68 bg-clip-text'>Buy Electronics Gadgets</p>
+        <p className='text-transparent font-semibold text-2xl bg-gradient-to-r from-[#606060] to-white w-68 bg-clip-text'>under 30 000</p>
 
         <div className="rounded-lg mt-7 hover:scale-105 transition-all duration-300 active:scale-100 w-42 p-[2px] bg-gradient-to-r from-[#806d01] mb-4 to-[#FFD700]">
 

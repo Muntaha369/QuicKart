@@ -2,6 +2,7 @@ import React from 'react'
 import Nav from '../Components/Nav'
 import Landing from '../Components/Landing'
 import Electronics from '../Components/Electronics'
+import Items from '../Components/Items'
 
 const page = () => {
   return (
@@ -11,7 +12,7 @@ const page = () => {
       <div className='LandingHolder'><Landing/></div>
 
       <div className='LandingLine'><div></div></div>
-
+      <Items/>
       <Electronics/>
 
     </div>
