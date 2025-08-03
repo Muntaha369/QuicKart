@@ -3,6 +3,7 @@ import Product from "@/app/model/products";
 import { NextResponse } from "next/server";
 
 export async function POST(req) {
+
   try {
     await ConnectDB();
 
@@ -15,7 +16,7 @@ export async function POST(req) {
       return NextResponse.json({ message: "Domain is required" }, { status: 400 });
     }
 
-    const products = await Product.find({ domain }).limit(5);
+    const products = await Product.find({ domain }).limit(8);
     
     return NextResponse.json({
       items: products
@@ -25,4 +26,5 @@ export async function POST(req) {
     console.error("API Error:", error);
     return NextResponse.json({ message: "An internal server error occurred" }, { status: 500 });
   }
+  
 }
