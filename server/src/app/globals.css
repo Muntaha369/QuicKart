@@ -185,6 +185,9 @@
  .ElecMain {
   @apply w-full flex flex-col items-center overflow-clip mt-20 px-4 sm:px-6 lg:px-8
  }
+ .ElecMain2 {
+  @apply w-full flex flex-col items-center overflow-clip px-4 sm:px-6 lg:px-8
+ }
 
  .ElecMap {
   @apply grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-8

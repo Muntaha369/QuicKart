@@ -2,57 +2,21 @@
 
 import React, {useEffect, useState} from 'react';
 import axios from 'axios'
-import ElecDealmd from '../../../public/ElecDealmd.png'
-import ElecDealsm from '../../../public/Elecdealsm.png'
-import { Julius_Sans_One } from 'next/font/google';
+
 // --- Reusable Components ---
 
-// 1. A reusable component for the product card skeleton
 
-const JuliusSansOne = Julius_Sans_One({subsets:['latin'], weight:['400']})
-
-const HeroBanner = () => {
-  return (
-    <div className='HeroDiv'>
-      <div className='flex flex-col w-[50%] z-10'>
-        <h1 className='SuperSonic'>Super Sonic</h1>
-        <h1 className={` ${JuliusSansOne.className} Deals`}>DEALS</h1>
-        <p className='HeroSub1'>Buy Electronics Gadgets</p>
-        <p className='HeroSub2'>under 30 000</p>
-
-        <div className="HeroButtonHolder">
-
-          <button>
-            <span>
-              BUY NOW
-            </span>  
-          </button>
-
-        </div>
-      </div>
-
-      <img 
-      className='hidden md:flex'
-      src={ElecDealmd.src} alt="Elecdeal" />
-
-      <img
-      className='z-0'
-      src={ElecDealsm.src} alt="Elecdeal" />
-    </div>
-  );
+type ElectronicsProps = {
+  domain: string;
 };
 
-
-// --- Main Page Component ---
-
-const Electronics = () => {
+const Electronics = ({domain}:ElectronicsProps) => { 
   const [products, setProducts] = useState([]); // Use a more descriptive name
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const domain = 'electronics';
         console.log('Fetching data for domain:', domain);
 
         const res = await axios.post('http://localhost:3000/api/Get-Items/Electronics', { domain });
@@ -71,11 +35,9 @@ const Electronics = () => {
   }, []); 
 
   return (
-    <main className='ElecMain'>
+    <main className='ElecMain2'>
       <div className='w-full max-w-7xl'>
-        <HeroBanner />
-
-        <div className='ElecMap'>
+        <div className='ElecMap my-3'>
           {isLoading
             ? 
               Array.from({ length: 8 }).map((_, idx) => (
