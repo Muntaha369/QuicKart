@@ -25,7 +25,6 @@ const itemsArr = [
 ];
 
 const Nav = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   // 1. Create refs for the elements we want to animate
   const navRef = useRef(null);
@@ -38,12 +37,12 @@ const Nav = () => {
       ScrollTrigger.create({
         trigger: categoryContainerRef.current,
         start: '200% 10%', // When the top of the container hits 10% from the top of the viewport
-        end: '1000% 10%', // When the bottom of the container hits 10% from the top of the viewport
+        end: '4900% 10%', // When the bottom of the container hits 10% from the top of the viewport
         toggleClass: {
           targets: navRef.current, // The element to toggle the class on
           className: 'sunshine',   // The class to add/remove
         },
-        // markers: true, // Keep for debugging, remove for production
+        markers: true, // Keep for debugging, remove for production
       });
     }
   }, []); // Empty dependency array ensures this runs once after mount
