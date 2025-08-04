@@ -20,6 +20,8 @@ const page = () => {
       <Electronics domain={'fashion'} />
       <Ad/>
       <Electronics domain={'food'} />
+      <Ad/>
+      <Electronics domain={'beauty'}/>
     </div>
   )
 }
