@@ -52,7 +52,7 @@ const Electronics = ({domain}:ElectronicsProps) => {
               products.map((product:any, idx) => (
                 <div key={idx} className='SkeletonDiv'>
                   <div className='h-[60%] flex justify-center items-center overflow-clip bg-white border-b-2'>
-                    <img className='w-[50%] h-'
+                    <img className='w-[50%] h-auto'
                      src={`/uploads/${product.name}.png`}
                      alt='PRODUCT-IMAGE'
                      />

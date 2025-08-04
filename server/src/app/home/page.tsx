@@ -18,6 +18,8 @@ const page = () => {
       <Electronics domain={'electronics'}/>
       <Ad/>
       <Electronics domain={'fashion'} />
+      <Ad/>
+      <Electronics domain={'food'} />
     </div>
   )
 }
