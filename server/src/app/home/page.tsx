@@ -16,8 +16,8 @@ const page = () => {
       <Items/>
       <Ad/>
       <Electronics domain={'electronics'}/>
-      {/* <Ad/>
-      <Electronics domain={'fashion'} /> */}
+      <Ad/>
+      <Electronics domain={'fashion'} />
     </div>
   )
 }

@@ -51,8 +51,8 @@ const Electronics = ({domain}:ElectronicsProps) => {
             : // Show the actual product data once loaded
               products.map((product:any, idx) => (
                 <div key={idx} className='SkeletonDiv'>
-                  <div className='h-[60%] flex justify-center items-center bg-white border-b-2'>
-                    <img className='w-[50%]'
+                  <div className='h-[60%] flex justify-center items-center overflow-clip bg-white border-b-2'>
+                    <img className='w-[50%] h-'
                      src={`/uploads/${product.name}.png`}
                      alt='PRODUCT-IMAGE'
                      />
