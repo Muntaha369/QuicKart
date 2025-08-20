@@ -58,15 +58,15 @@ const Electronics = ({domain}:ElectronicsProps) => {
                      alt='PRODUCT-IMAGE'
                      />
                   </div>
-                  <div className='h-[40%] p-2'>
-                    <p className='font-bold overflow-clip text-[#5E2615] h-6'>{product.name}</p>
+                  <div className=' flex flex-col justify-center h-[40%] p-2'>
+                    <p className='font-bold text-lg mb-1 overflow-clip text-[#5E2615] h-6'>{product.name}</p>
                     <p className='text-sm h-5 overflow-clip'>{product.description}</p>
                     <p className='text-[14px] text-orange-500'>More...</p>
                     <div className=' flex gap-3 items-center'>
                       <p className='text-[#5E2615] font-bold text-xl'>{product.price}</p>
-                      <div className='flex'>
+                      <div className='flex justify-center items-center'>
                         <p className='text-orange-500 font-bold text-md'>4.5</p>
-                        <img className='h-5' src={Reviews.src} alt="none for now" />
+                        <img className='h-4 flex' src={Reviews.src} alt="none for now" />
                       </div>
                     </div>
                   </div>
