@@ -2,6 +2,7 @@
 
 import React, {useEffect, useState} from 'react';
 import axios from 'axios'
+import Reviews from '../../../public/reviews.png'
 
 // --- Reusable Components ---
 
@@ -57,8 +58,17 @@ const Electronics = ({domain}:ElectronicsProps) => {
                      alt='PRODUCT-IMAGE'
                      />
                   </div>
-                  <div className='h-[40%] p-3'>
-                    <p className='font-bold'>{product.name}</p>
+                  <div className='h-[40%] p-2'>
+                    <p className='font-bold overflow-clip text-[#5E2615] h-6'>{product.name}</p>
+                    <p className='text-sm h-5 overflow-clip'>{product.description}</p>
+                    <p className='text-[14px] text-orange-500'>More...</p>
+                    <div className=' flex gap-3 items-center'>
+                      <p className='text-[#5E2615] font-bold text-xl'>{product.price}</p>
+                      <div className='flex'>
+                        <p className='text-orange-500 font-bold text-md'>4.5</p>
+                        <img className='h-5' src={Reviews.src} alt="none for now" />
+                      </div>
+                    </div>
                   </div>
                 </div>
               ))}
