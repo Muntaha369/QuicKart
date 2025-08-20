@@ -3,8 +3,7 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios'
 import Reviews from '../../../public/reviews.png'
-
-// --- Reusable Components ---
+import {useRouter} from 'next/navigation';
 
 
 type ElectronicsProps = {
@@ -14,6 +13,12 @@ type ElectronicsProps = {
 const Electronics = ({domain}:ElectronicsProps) => { 
   const [products, setProducts] = useState([]); // Use a more descriptive name
   const [isLoading, setIsLoading] = useState(true);
+
+  const router = useRouter()
+
+  const redirectTo = (path:string) => {
+    router.replace(path);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -51,7 +56,9 @@ const Electronics = ({domain}:ElectronicsProps) => {
               ))
             : // Show the actual product data once loaded
               products.map((product:any, idx) => (
-                <div key={idx} className='SkeletonDiv'>
+                <div key={idx} 
+                onClick={() => redirectTo('/home/product')}
+                className='SkeletonDiv'>
                   <div className='h-[60%] flex justify-center items-center overflow-clip bg-white border-b-2'>
                     <img className='w-[50%] h-auto'
                      src={`/uploads/${product.name}.png`}
