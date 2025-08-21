@@ -1,10 +1,4 @@
-'use client';
-
-import React, { useRef } from 'react';
-import { gsap } from "gsap";
-import { useGSAP } from "@gsap/react";
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Inter } from 'next/font/google';
+import React from 'react'
 import SearchIcon from '../../../public/Vector.png';
 import LoginIcon from '../../../public/LoginIcon.png';
 import Electronics from '../../../public/Electronics.png';
@@ -13,8 +7,8 @@ import Essentials from '../../../public/Essentials.png';
 import Beauty from '../../../public/Beauty.png';
 import Health from '../../../public/Health.png';
 import Cart from '../../../public/Kart.png';
+import { Inter } from 'next/font/google';
 
-const inter = Inter({ subsets: ['latin'] });
 
 const itemsArr = [
   { items: 'Electronics', images: Electronics.src },
@@ -24,31 +18,13 @@ const itemsArr = [
   { items: 'Health', images: Health.src },
 ];
 
-const Nav = () => {
+const inter = Inter({ subsets: ['latin'] });
 
-  // 1. Create refs for the elements we want to animate
-  const navRef = useRef(null);
-  const categoryContainerRef = useRef(null); // Ref for the parent container
 
-  useGSAP(() => {
-    gsap.registerPlugin(ScrollTrigger);
 
-    if (categoryContainerRef.current) {
-      ScrollTrigger.create({
-        trigger: categoryContainerRef.current,
-        start: '200% 10%', // When the top of the container hits 10% from the top of the viewport
-        end: '4900% 10%', // When the bottom of the container hits 10% from the top of the viewport
-        toggleClass: {
-          targets: navRef.current, // The element to toggle the class on
-          className: 'sunshine',   // The class to add/remove
-        },
-        markers: true, // Keep for debugging, remove for production
-      });
-    }
-  }, []); // Empty dependency array ensures this runs once after mount
-
+const StaticNav = () => {
   return (
-    <nav ref={navRef} className='navbar nav1'>
+    <nav  className='sunshine Staticnavbar nav1'>
       {/* --- TOP BAR --- */}
       <div className='navflex'>
         <h1 className={`${inter.className} quickText`}>
@@ -82,7 +58,7 @@ const Nav = () => {
 
       {/* --- DESKTOP CATEGORY LINKS --- */}
       {/* 3. Attach the ref to the parent container */}
-      <div ref={categoryContainerRef} className='catagoryContainer overflow-x-scroll'>
+      <div  className='catagoryContainer overflow-x-scroll'>
         {itemsArr.map((elem, idx) => (
           <div key={idx} className='flex items-center space-x-2 cursor-pointer'>
             <img className='h-[1rem] w-[1rem]' src={elem.images} alt={elem.items} />
@@ -91,7 +67,7 @@ const Nav = () => {
         ))}
       </div>
     </nav>
-  );
-};
+  )
+}
 
-export default Nav;
+export default StaticNav

@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 /* */
 .flex-custom {
   @apply flex justify-between items-center flex-col;
@@ -213,6 +217,11 @@
  .ItemP {
   @apply w-full h-[25%] flex justify-center font-semibold text-2xl text-[#5E2615] items-center bg-[#FFE9BE]
  }
+
+ /* Static Nav */
+ .Staticnavbar{
+  @apply w-full backdrop-blur-md transition-all duration-500 flex flex-col fixed top-0 z-50 p-2 sm:p-4 lg:px-14
+}
 
 /* :root {
   --background: #ffffff;

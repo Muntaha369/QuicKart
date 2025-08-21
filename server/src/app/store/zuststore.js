@@ -12,3 +12,17 @@ export const userDetails = create((set) => ({
     } 
 })),
 }))
+
+export const productDetails = create((set) => ({
+  details:{
+    productIMG:"",
+    productName:"",
+    productDescription:"",
+    price:""
+  },
+  ChangeDetails: (img,name,desc,price) => set(() => ({
+    details:{
+    img,name,desc,price
+    } 
+})),
+}))

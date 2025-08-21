@@ -4,6 +4,7 @@ import React, {useEffect, useState} from 'react';
 import axios from 'axios'
 import Reviews from '../../../public/reviews.png'
 import {useRouter} from 'next/navigation';
+import { productDetails } from '../store/zuststore';
 
 
 type ElectronicsProps = {
@@ -11,14 +12,19 @@ type ElectronicsProps = {
 };
 
 const Electronics = ({domain}:ElectronicsProps) => { 
-  const [products, setProducts] = useState([]); // Use a more descriptive name
+  const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+
+  const { ChangeDetails } = productDetails()
 
   const router = useRouter()
 
-  const redirectTo = (path:string, product:string) => {
+  const redirectTo = (path:string, product:string, info:string, price:string) => {
     router.replace(path);
     console.log(product)
+
+    ChangeDetails(product,product,info,price)
+    
   };
 
   useEffect(() => {
@@ -34,7 +40,7 @@ const Electronics = ({domain}:ElectronicsProps) => {
       } catch (error) {
         console.error("Failed to fetch products:", error);
       } finally {
-        setIsLoading(false); // Stop loading after the request is done
+        setIsLoading(false);
       }
     };
 
@@ -58,7 +64,7 @@ const Electronics = ({domain}:ElectronicsProps) => {
             : // Show the actual product data once loaded
               products.map((product:any, idx) => (
                 <div key={idx} 
-                onClick={() => redirectTo('/home/product',`${product.name}`)}
+                onClick={() => redirectTo(`/home/${product.name}`,`${product.name}`,product.description, product.price)}
                 className='SkeletonDiv'>
                   <div className='h-[60%] flex justify-center items-center overflow-clip bg-white border-b-2'>
                     <img className='w-[50%] h-auto'
