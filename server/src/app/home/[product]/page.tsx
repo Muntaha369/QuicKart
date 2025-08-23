@@ -1,22 +1,25 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { productDetails } from '@/app/store/zuststore';
 import StaticNav from '@/app/Components/StaticNav';
 import Electronics from '@/app/Components/Electronics';
 
 const ProductPage = () => {
   // Use the Zustand store to get the details
+  const [domain, setDomain] = useState('')
   const { details, ChangeDetails } = productDetails();
   
   const syncWithLocalStorage = () => {
     const storedData = localStorage.getItem('productDetails');
     if (storedData) {
       const parsedData = JSON.parse(storedData)
-    ChangeDetails(parsedData.img,parsedData.name,parsedData.desc,parsedData.price)  
-    console.log(parsedData)   
+    ChangeDetails(parsedData.img,parsedData.name,parsedData.desc,parsedData.price,parsedData.domain)  
+    // setDomain(parsedData.domain)
+    console.log(parsedData.domain)   
     }
   };
+
   // Load state from localStorage on initial render
   useEffect(() => {
     syncWithLocalStorage();
@@ -26,7 +29,7 @@ const ProductPage = () => {
   useEffect(() => {
     if (details.name) { // Only save if the details are not empty
       localStorage.setItem('productDetails', JSON.stringify(details));
-      console.log("Still issue")
+      console.log(details)
     }
   }, []);
 
@@ -81,7 +84,9 @@ const ProductPage = () => {
       </div>
     </div>
     <div className='bg-gradient-to-t from-[#FFD07E]/60 to-[#FF9A41]/60 border-t-4 border-t-[#FF6C41] '>
-      <Electronics domain={'electronics'}/>
+    { details.domain !=="" &&
+      <Electronics domain={details.domain}/>
+    }
     </div>
     </>
   );

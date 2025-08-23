@@ -19,11 +19,11 @@ const Electronics = ({domain}:ElectronicsProps) => {
 
   const router = useRouter()
 
-  const redirectTo = (path:string, product:string, info:string, price:string) => {
+  const redirectTo = (path:string, product:string, info:string, price:string, domain:string) => {
     router.replace(path);
-    console.log(product)
+    console.log(domain)
 
-    ChangeDetails(product,product,info,price)
+    ChangeDetails(product,product,info,price,domain)
     
   };
 
@@ -64,7 +64,7 @@ const Electronics = ({domain}:ElectronicsProps) => {
             : // Show the actual product data once loaded
               products.map((product:any, idx) => (
                 <div key={idx} 
-                onClick={() => redirectTo(`/home/${product.name}`,`${product.name}`,product.description, product.price)}
+                onClick={() => redirectTo(`/home/${product.name}`,`${product.name}`,product.description, product.price,product.domain)}
                 className='SkeletonDiv'>
                   <div className='h-[60%] flex justify-center items-center overflow-clip bg-white border-b-2'>
                     <img className='w-[50%] h-auto'

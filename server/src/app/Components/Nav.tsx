@@ -13,6 +13,7 @@ import Essentials from '../../../public/Essentials.png';
 import Beauty from '../../../public/Beauty.png';
 import Health from '../../../public/Health.png';
 import Cart from '../../../public/Kart.png';
+import {useRouter} from 'next/navigation';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -26,6 +27,13 @@ const itemsArr = [
 
 const Nav = () => {
 
+    const router = useRouter()
+
+    const redirecto = ()=>{
+      router.replace('/home');
+      console.log("CLICKING")
+    }
+  
   // 1. Create refs for the elements we want to animate
   const navRef = useRef(null);
   const categoryContainerRef = useRef(null); // Ref for the parent container
@@ -51,9 +59,13 @@ const Nav = () => {
     <nav ref={navRef} className='navbar nav1'>
       {/* --- TOP BAR --- */}
       <div className='navflex'>
-        <h1 className={`${inter.className} quickText`}>
-          Quic<span className='text-[#FF6C41]'>kart</span>
-        </h1>
+        <div
+        onClick={redirecto}>
+          <h1 
+          className={`${inter.className} quickText`}>
+            Quic<span className='text-[#FF6C41]'>kart</span>
+          </h1>
+        </div>
         <div className='searchBarHolder'>
           <div className='searchButton'>
             <img src={SearchIcon.src} alt="Search" />

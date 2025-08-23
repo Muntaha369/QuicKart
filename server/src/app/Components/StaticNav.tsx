@@ -8,6 +8,8 @@ import Beauty from '../../../public/Beauty.png';
 import Health from '../../../public/Health.png';
 import Cart from '../../../public/Kart.png';
 import { Inter } from 'next/font/google';
+import {useRouter} from 'next/navigation';
+
 
 
 const itemsArr = [
@@ -23,13 +25,27 @@ const inter = Inter({ subsets: ['latin'] });
 
 
 const StaticNav = () => {
+
+  
+      const router = useRouter()
+  
+      const redirecto = ()=>{
+        router.replace('/home');
+        console.log("CLICKING")
+      }
+
   return (
     <nav  className='sunshine Staticnavbar nav1'>
       {/* --- TOP BAR --- */}
       <div className='navflex'>
-        <h1 className={`${inter.className} quickText`}>
-          Quic<span className='text-[#FF6C41]'>kart</span>
-        </h1>
+        <div
+        onClick={redirecto}>
+        
+          <h1 className={`${inter.className} quickText`}>
+            Quic<span className='text-[#FF6C41]'>kart</span>
+          </h1>
+        
+        </div>
         <div className='searchBarHolder'>
           <div className='searchButton'>
             <img src={SearchIcon.src} alt="Search" />

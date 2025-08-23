@@ -18,11 +18,12 @@ export const productDetails = create((set) => ({
     productIMG:"",
     productName:"",
     productDescription:"",
-    price:""
+    price:"",
+    domain:""
   },
-  ChangeDetails: (img,name,desc,price) => set(() => ({
+  ChangeDetails: (img,name,desc,price,domain) => set(() => ({
     details:{
-    img,name,desc,price
+    img,name,desc,price,domain
     } 
 })),
 }))
