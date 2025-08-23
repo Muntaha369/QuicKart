@@ -1,3 +1,5 @@
+"use client"
+
 import React from 'react'
 import Headphone from '../../../public/ItemsHeadjacks.png'
 import Mobile from '../../../public/ItemsMobile.png'
@@ -5,6 +7,8 @@ import Clothes from '../../../public/ItemsClothes.png'
 import Sauce from '../../../public/Ketchup.png'
 import Watch from '../../../public/ItemsWatch.png'
 import { Inter } from 'next/font/google'
+import {useRouter} from 'next/navigation';
+
 
 const inter = Inter({subsets:['latin']})
 
@@ -32,11 +36,19 @@ const ItemsArr = [
 ]
 
 const Items = () => {
+
+    const router = useRouter()
+  
+
+    const redirectTo = (path:string) => {
+    router.replace(path);  
+  };
   return (
     <div className='ItemsDiv'>
       {
         ItemsArr.map((Item,idx)=>(
           <div
+          onClick={()=>redirectTo(`/products/${Item.p}`)}
           key={idx}
           className='MappingDiv'>
             <div className='ItemImg'>
