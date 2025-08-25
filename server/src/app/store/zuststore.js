@@ -27,3 +27,8 @@ export const productDetails = create((set) => ({
     } 
 })),
 }))
+
+export const CardsProdsDetail = create((set)=>({
+  card:"",
+  UpdateCard:(Card)=>set(()=>({card:Card}))
+}))

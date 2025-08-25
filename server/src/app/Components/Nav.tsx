@@ -50,7 +50,7 @@ const Nav = () => {
           targets: navRef.current, // The element to toggle the class on
           className: 'sunshine',   // The class to add/remove
         },
-        markers: true, // Keep for debugging, remove for production
+        // markers: true, // Keep for debugging, remove for production
       });
     }
   }, []); // Empty dependency array ensures this runs once after mount

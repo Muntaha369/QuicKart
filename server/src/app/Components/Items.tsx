@@ -8,6 +8,7 @@ import Sauce from '../../../public/Ketchup.png'
 import Watch from '../../../public/ItemsWatch.png'
 import { Inter } from 'next/font/google'
 import {useRouter} from 'next/navigation';
+import { CardsProdsDetail } from '../store/zuststore'
 
 
 const inter = Inter({subsets:['latin']})
@@ -15,23 +16,23 @@ const inter = Inter({subsets:['latin']})
 const ItemsArr = [
   {
     i:Headphone.src,
-    p:'Headphone'
+    p:'headphones'
   },
   {
     i:Mobile.src,
-    p:"Mobile"
+    p:"mobile"
   },
   {
     i:Clothes.src,
-    p:'Clothes'
+    p:'tshirt'
   },
   {
     i:Sauce.src,
-    p:'Sause'
+    p:'sauce'
   },
   {
     i:Watch.src,
-    p:'Watch'
+    p:'watches'
   }
 ]
 
@@ -39,16 +40,18 @@ const Items = () => {
 
     const router = useRouter()
   
+    const { UpdateCard } = CardsProdsDetail()
 
-    const redirectTo = (path:string) => {
-    router.replace(path);  
+    const redirectTo = (path:string,product:string) => {  
+      UpdateCard(product)
+      router.replace(path);  
   };
   return (
     <div className='ItemsDiv'>
       {
         ItemsArr.map((Item,idx)=>(
           <div
-          onClick={()=>redirectTo(`/products/${Item.p}`)}
+          onClick={()=>redirectTo(`/products/${Item.p}`,Item.p)}
           key={idx}
           className='MappingDiv'>
             <div className='ItemImg'>

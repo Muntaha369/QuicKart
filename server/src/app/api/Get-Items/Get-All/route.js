@@ -16,7 +16,7 @@ export async function POST(req) {
       return NextResponse.json({ message: "Domain is required" }, { status: 400 });
     }
 
-    const products = await Product.find({ domain });
+    const products = await Product.find({ subdomain:domain });
     
     return NextResponse.json({
       items: products
