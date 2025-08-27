@@ -23,7 +23,7 @@ const Electronics = ({domain}:ElectronicsProps) => {
 
   const redirectTo = (path:string, product:string, info:string, price:string, domain:string) => {
     router.replace(path);
-    console.log(domain)
+    // console.log(domain)
 
     ChangeDetails(product,product,info,price,domain)
     
@@ -32,7 +32,7 @@ const Electronics = ({domain}:ElectronicsProps) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        console.log('Fetching data for domain:', domain);
+        // console.log('Fetching data for domain:', domain);
 
         const res = await axios.post('http://localhost:3000/api/Get-Items/Get-All', { domain });
         
