@@ -32,7 +32,7 @@ const Electronics = ({domain}:ElectronicsProps) => {
       try {
         console.log('Fetching data for domain:', domain);
 
-        const res = await axios.post('http://localhost:3000/api/Get-Items/Electronics', { domain });
+        const res = await axios.post('http://localhost:3000/api/Get-Items/Get-All', { domain });
         
         console.log('Data received:', res.data.items);
         

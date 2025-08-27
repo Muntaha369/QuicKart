@@ -3,7 +3,7 @@ import Product from "@/app/model/products";
 import { NextResponse } from "next/server";
 
 export async function POST(req) {
-
+  
   try {
     await ConnectDB();
 
@@ -17,6 +17,21 @@ export async function POST(req) {
     }
 
     const products = await Product.find({ subdomain:domain });
+
+    if(products.length===0){
+      const newProducts = await Product.find({domain}).limit(8)
+      
+      if(newProducts.length===0){
+        const indiProducts = await Product.find({name:domain}).limit(8)
+        return NextResponse.json({
+          items: indiProducts
+        });
+      }
+
+      return NextResponse.json({
+        items: newProducts
+      });
+    }
     
     return NextResponse.json({
       items: products
