@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -15,6 +15,7 @@ import Health from '../../../public/Health.png';
 import Cart from '../../../public/Kart.png';
 import {useRouter} from 'next/navigation';
 
+
 const inter = Inter({ subsets: ['latin'] });
 
 const itemsArr = [
@@ -27,11 +28,17 @@ const itemsArr = [
 
 const Nav = () => {
 
+  const [navValue, setNavValue] = useState("")
+
     const router = useRouter()
 
     const redirecto = ()=>{
       router.replace('/home');
       console.log("CLICKING")
+    }
+
+    const redirectoProduct = ()=>{
+      router.replace(`/p/${navValue}`)
     }
   
   // 1. Create refs for the elements we want to animate
@@ -67,10 +74,13 @@ const Nav = () => {
           </h1>
         </div>
         <div className='searchBarHolder'>
-          <div className='searchButton'>
+          <div 
+          onClick={redirectoProduct}
+          className='searchButton'>
             <img src={SearchIcon.src} alt="Search" />
           </div>
           <input
+            onChange={(e)=>setNavValue(e.target.value)}
             placeholder='Search Products...'
             className='searchBar'
             type="text"
