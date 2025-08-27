@@ -1,8 +1,11 @@
+"use client"
+
 import React from 'react'
+import StaticNav from '@/app/Components/StaticNav'
 
 const page = () => {
   return (
-    <div>page</div>
+    <StaticNav/>
   )
 }
 
