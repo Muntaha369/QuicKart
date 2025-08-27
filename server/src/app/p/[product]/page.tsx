@@ -1,11 +1,15 @@
 "use client"
 
 import React from 'react'
-import StaticNav from '@/app/Components/StaticNav'
+import CardsProds from '@/app/Components/CardsProds'
+import { CardsProdsDetail } from '../../store/zuststore'
 
 const page = () => {
+
+  const { card } = CardsProdsDetail()
+  console.log(card)
   return (
-    <StaticNav/>
+        <CardsProds domain={card}/>
   )
 }
 

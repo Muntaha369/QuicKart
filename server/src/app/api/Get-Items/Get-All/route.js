@@ -19,7 +19,7 @@ export async function POST(req) {
     const products = await Product.find({ subdomain:domain });
 
     if(products.length===0){
-      const newProducts = await Product.find({domain}).limit(8)
+      const newProducts = await Product.find({domain})
       
       if(newProducts.length===0){
         const indiProducts = await Product.find({name:domain})

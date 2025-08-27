@@ -1,4 +1,6 @@
-import React from 'react'
+'use client'
+
+import React,{useState} from 'react'
 import SearchIcon from '../../../public/Vector.png';
 import LoginIcon from '../../../public/LoginIcon.png';
 import Electronics from '../../../public/Electronics.png';
@@ -9,6 +11,7 @@ import Health from '../../../public/Health.png';
 import Cart from '../../../public/Kart.png';
 import { Inter } from 'next/font/google';
 import {useRouter} from 'next/navigation';
+import { CardsProdsDetail } from '../store/zuststore';
 
 
 
@@ -26,12 +29,19 @@ const inter = Inter({ subsets: ['latin'] });
 
 const StaticNav = () => {
 
+    const [navValue, setNavValue] = useState("")
   
+      const { UpdateCard } = CardsProdsDetail()
+    
       const router = useRouter()
   
       const redirecto = ()=>{
         router.replace('/home');
         console.log("CLICKING")
+      }
+
+      const redirectoProduct = ()=>{
+        router.replace(`/p/${navValue}`)
       }
 
   return (
@@ -47,10 +57,13 @@ const StaticNav = () => {
         
         </div>
         <div className='searchBarHolder'>
-          <div className='searchButton'>
+          <div 
+          onClick={redirectoProduct}
+          className='searchButton'>
             <img src={SearchIcon.src} alt="Search" />
           </div>
           <input
+            onChange={(e)=>{setNavValue(e.target.value); UpdateCard(e.target.value)}}
             placeholder='Search Products...'
             className='searchBar'
             type="text"

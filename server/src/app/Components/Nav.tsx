@@ -14,7 +14,7 @@ import Beauty from '../../../public/Beauty.png';
 import Health from '../../../public/Health.png';
 import Cart from '../../../public/Kart.png';
 import {useRouter} from 'next/navigation';
-
+import { CardsProdsDetail } from '../store/zuststore';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -28,7 +28,9 @@ const itemsArr = [
 
 const Nav = () => {
 
-  const [navValue, setNavValue] = useState("")
+    const { UpdateCard } = CardsProdsDetail()
+
+    const [navValue, setNavValue] = useState("")
 
     const router = useRouter()
 
@@ -80,7 +82,7 @@ const Nav = () => {
             <img src={SearchIcon.src} alt="Search" />
           </div>
           <input
-            onChange={(e)=>setNavValue(e.target.value)}
+            onChange={(e)=>{setNavValue(e.target.value); UpdateCard(e.target.value)}}
             placeholder='Search Products...'
             className='searchBar'
             type="text"

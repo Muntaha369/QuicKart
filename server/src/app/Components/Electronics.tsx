@@ -5,6 +5,7 @@ import axios from 'axios'
 import Reviews from '../../../public/reviews.png'
 import {useRouter} from 'next/navigation';
 import { productDetails } from '../store/zuststore';
+import { CardsProdsDetail } from '../store/zuststore'
 
 
 type ElectronicsProps = {
@@ -15,6 +16,7 @@ const Electronics = ({domain}:ElectronicsProps) => {
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
+  const { UpdateCard } = CardsProdsDetail()
   const { ChangeDetails } = productDetails()
 
   const router = useRouter()
@@ -62,7 +64,7 @@ const Electronics = ({domain}:ElectronicsProps) => {
                 </div>
               ))
             : // Show the actual product data once loaded
-              products.map((product:any, idx) => (
+              products.slice(0, 8).map((product:any, idx) => (
                 <div key={idx} 
                 onClick={() => redirectTo(`/home/${product.name}`,`${product.name}`,product.description, product.price,product.domain)}
                 className='SkeletonDiv'>
@@ -88,10 +90,12 @@ const Electronics = ({domain}:ElectronicsProps) => {
               ))}
           
           <div className='ElecButton'>
-            <button className='
+            <button 
+            onClick={()=>{UpdateCard(domain);router.replace(`products/${domain}`)}}
+            className='
             bg-[#FF6C41] hover:cursor-pointer 
              active:scale-100 rounded-lg w-full 
-             aspect-[4/5] font-bold text-white 
+             aspect-[3.3/5] font-bold text-white 
              text-4xl border-2 border-black 
              hover:scale-105 transition-all'>
             <p className='mb-2'> Click See More</p>
