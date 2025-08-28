@@ -1,6 +1,8 @@
 'use client'
 
-import React,{useState} from 'react'
+import React,{useState, useRef, useEffect} from 'react'
+import axios from 'axios';
+import Fuse from 'fuse.js';
 import SearchIcon from '../../../public/Vector.png';
 import LoginIcon from '../../../public/LoginIcon.png';
 import Electronics from '../../../public/Electronics.png';
@@ -29,20 +31,64 @@ const inter = Inter({ subsets: ['latin'] });
 
 const StaticNav = () => {
 
-    const [navValue, setNavValue] = useState("")
+  const { UpdateCard } = CardsProdsDetail();
   
-      const { UpdateCard } = CardsProdsDetail()
-    
-      const router = useRouter()
+      const [products, setProducts] = useState([]);
+      const [navValue, setNavValue] = useState("");
+      const [searchResults, setSearchResults] = useState([]);
   
-      const redirecto = ()=>{
-        router.replace('/home');
-        console.log("CLICKING")
-      }
+      const router = useRouter();
+      const navRef = useRef(null);
+      const categoryContainerRef = useRef(null);
+  
 
-      const redirectoProduct = ()=>{
-        router.replace(`/p/${navValue}`)
+  useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const res = await axios.get('http://localhost:3000/api/Get-Items/Get-AllData');
+                setProducts(res.data.products || []);
+            } catch (error) {
+                console.error("Failed to fetch products:", error);
+            }
+        };
+        fetchData();
+    }, []);
+
+    useEffect(() => {
+      if (navValue.length > 0) {
+        const fuseOptions = {
+          keys: ['name'],
+          threshold: 0.3,
+        };
+        
+        const fuse = new Fuse(products, fuseOptions);
+        
+        const results = fuse.search(navValue);
+
+        console.log(results)
+        
+        setSearchResults(results.map(result => result.item));
+        console.log(searchResults)
+      } else {
+        setSearchResults([]);
       }
+    }, [navValue, products]); 
+
+    const redirecto = () => {
+        router.replace('/home');
+    };
+
+    const handleSearchChange = (e:any) => {
+        const value = e.target.value;
+        UpdateCard(value)
+        setNavValue(value);
+    };
+
+    const handleSearchClick = (productName:any) => {
+      router.replace(`/p/${productName}`);
+      setSearchResults([]);
+      setNavValue("");
+    }
 
   return (
     <nav  className='sunshine Staticnavbar nav1'>
@@ -58,16 +104,30 @@ const StaticNav = () => {
         </div>
         <div className='searchBarHolder'>
           <div 
-          onClick={redirectoProduct}
+          onClick={() => handleSearchClick(navValue)}
           className='searchButton'>
             <img src={SearchIcon.src} alt="Search" />
           </div>
           <input
-            onChange={(e)=>{setNavValue(e.target.value); UpdateCard(e.target.value)}}
+            onChange={handleSearchChange}
+            value={navValue}
             placeholder='Search Products...'
             className='searchBar'
             type="text"
           />
+          {searchResults.length > 0 && (
+                        <div className="fixed top-full left-0 mt-1 w-full bg-white rounded-md shadow-lg z-50 max-h-64 overflow-y-auto">
+                            {searchResults.map((product:String,idx) => (
+                                <div
+                                    key={idx}
+                                    onClick={() => {handleSearchClick(product); UpdateCard(product)}}
+                                    className="p-2 cursor-pointer text-black hover:bg-gray-200"
+                                >
+                                    {product}
+                                </div>
+                            ))}
+                        </div>
+                    )}
         </div>
         <div className=' scale-75 sm:scale-100 flex space-x-2 lg:space-x-6 items-center'>
           <div>

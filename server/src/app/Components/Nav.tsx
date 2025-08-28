@@ -43,7 +43,6 @@ const Nav = () => {
         const fetchData = async () => {
             try {
                 const res = await axios.get('http://localhost:3000/api/Get-Items/Get-AllData');
-                console.log(res.data.products)
                 setProducts(res.data.products || []);
             } catch (error) {
                 console.error("Failed to fetch products:", error);
