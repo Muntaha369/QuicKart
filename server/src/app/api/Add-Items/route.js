@@ -11,8 +11,6 @@ export async function POST(req) {
 
     const data = await req.formData();
     const file = data.get('file');
-
-    // Get other form fields the same way
     const domain = data.get('domain');
     const subdomain = data.get('subdomain');
     const name = data.get('name');
