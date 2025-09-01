@@ -1,22 +1,29 @@
-'use client';
+"use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { productDetails } from '@/app/store/zuststore';
 import StaticNav from '@/app/Components/StaticNav';
 import Electronics from '@/app/Components/Electronics';
+import axios from 'axios';
+
+// Add Razorpay type to the window object
+declare global {
+  interface Window {
+    Razorpay: any;
+  }
+}
 
 const ProductPage = () => {
   // Use the Zustand store to get the details
-  const [domain, setDomain] = useState('')
   const { details, ChangeDetails } = productDetails();
   
   const syncWithLocalStorage = () => {
     const storedData = localStorage.getItem('productDetails');
     if (storedData) {
       const parsedData = JSON.parse(storedData)
-    ChangeDetails(parsedData.img,parsedData.name,parsedData.desc,parsedData.price,parsedData.domain)  
+    ChangeDetails(parsedData.img,parsedData.name,parsedData.desc,parsedData.price,parsedData.domain)  
     // setDomain(parsedData.domain)
-    console.log(parsedData.domain)   
+    console.log(parsedData.domain)   
     }
   };
 
@@ -32,6 +39,82 @@ const ProductPage = () => {
       console.log(details)
     }
   }, []);
+
+  function loadScript(src:any) {
+  return new Promise((resolve) => {
+    const script = document.createElement("script");
+    script.src = src;
+    script.onload = () => resolve(true);
+    script.onerror = () => resolve(false);
+    document.body.appendChild(script);
+  });
+}
+
+  const paymentHandler = async (e:any)=>{
+
+    // FIX: Remove the Rupee symbol and convert to an integer
+    function cleanPrice(priceString: string) {
+      const sanitizedString = priceString.replace('₹', '');
+      return parseInt(sanitizedString) * 100; // Convert to paise
+    }
+
+    const newPrice = cleanPrice(details.price);
+
+    console.log(newPrice);
+            
+      const res = await loadScript("https://checkout.razorpay.com/v1/checkout.js");
+      
+      if (!res) {
+        alert("Razorpay SDK failed to load. Are you online?");
+        return;
+      }
+      
+      // Call the backend API to create a new order
+      
+    // FIX: Send a number in the amount field
+    const orderResponse = await axios.post('http://localhost:3000/api/Razorpay/orders', {amount:newPrice})
+    console.log(orderResponse.data)
+
+    if (!orderResponse.data) {
+      alert("Server error. Are you online?");
+      return;
+    }
+
+    const { order_id } = orderResponse.data;
+
+var options = {
+    // FIX: Use environment variables for security
+    "key": "rzp_test_RCFP95WTZXuXsq", 
+    "amount": newPrice, 
+    "currency": "INR",
+    "name": "Acme Corp",
+    "description": "Test Transaction",
+    "image": "https://example.com/your_logo",
+    "order_id": order_id,
+    "handler": function (response:any) {
+      // You can add your verification logic here
+      alert("Payment successful! Payment ID: " + response.razorpay_payment_id);
+    },
+    "prefill": {
+        "name": "Gaurav Kumar",
+        "email": "gaurav.kumar@example.com",
+        "contact": "9000090000"
+    },
+    "notes": {
+        "address": "Razorpay Corporate Office"
+    },
+    "theme": {
+        "color": "#3399cc"
+    }
+};
+
+    var rzp1 = new window.Razorpay(options);
+    rzp1.open();
+    e.preventDefault();
+}
+
+
+  
 
   return (
   <>
@@ -77,7 +160,9 @@ const ProductPage = () => {
           </div>
 
           {/* Buy Now Button */}
-          <button className="w-full md:w-auto px-8 py-4 border-2 bg-white text-[#FF6C41]  font-bold rounded-lg shadow-lg hover:bg-[#FF6C41] hover:text-white transition duration-300 transform hover:scale-105">
+          <button 
+          onClick={paymentHandler}
+          className="w-full md:w-auto px-8 py-4 border-2 bg-white text-[#FF6C41]  font-bold rounded-lg shadow-lg hover:bg-[#FF6C41] hover:text-white transition duration-300 transform hover:scale-105">
             Buy Now
           </button>
         </div>
